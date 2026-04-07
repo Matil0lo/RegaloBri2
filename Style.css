@@ -17,7 +17,7 @@ body::before {
   content: "";
   position: fixed;
   inset: 0;
-  background-image: url("./Tarjeta\ de\ cumpleaños\ colorida\ y\ alegre.png");
+  background-image: url("./fondo.png");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
