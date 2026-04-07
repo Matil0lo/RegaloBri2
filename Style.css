@@ -1,0 +1,191 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  min-height: 100vh;
+  font-family: 'Inter', sans-serif;
+  color: #2c2c2c;
+  position: relative;
+  overflow-x: hidden;
+}
+
+/* Fondo animado */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background-image: url("./Tarjeta\ de\ cumpleaños\ colorida\ y\ alegre.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  transform: scale(1.05);
+  animation: moverFondo 18s ease-in-out infinite alternate;
+  z-index: -2;
+}
+
+/* Capa difusa arriba del fondo */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.32);
+  backdrop-filter: blur(3px);
+  z-index: -1;
+}
+
+main {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+/* Carta y formulario comparten estilo */
+.carta,
+.formulario {
+  width: 100%;
+  max-width: 980px;
+  background: #f8f1df;
+  border-radius: 8px;
+  padding: 38px 42px;
+  box-shadow: 0 20px 55px rgba(0, 0, 0, 0.18);
+  animation: aparecerCarta 0.5s ease;
+}
+
+.carta h1,
+.formulario h2 {
+  font-family: 'Libre Baskerville', serif;
+  color: #1f2f46;
+}
+
+.carta h1 {
+  font-size: 30px;
+  margin-bottom: 22px;
+}
+
+.formulario h2 {
+  font-size: 24px;
+  margin-bottom: 22px;
+}
+
+.carta p {
+  font-size: 15px;
+  line-height: 1.65;
+  color: #2f4358;
+  margin-bottom: 14px;
+}
+
+button {
+  margin-top: 14px;
+  padding: 11px 22px;
+  border: 1px solid #1f2f46;
+  background: transparent;
+  color: #1f2f46;
+  border-radius: 5px;
+  font-size: 14px;
+  font-family: 'Inter', sans-serif;
+  cursor: pointer;
+  transition: all 0.25s ease;
+}
+
+button:hover {
+  background: #1f2f46;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.formulario {
+  display: none;
+}
+
+.formulario div {
+  margin-bottom: 18px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  color: #31465c;
+}
+
+input,
+textarea {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #a7acb3;
+  background: transparent;
+  padding: 10px 2px;
+  font-size: 14px;
+  font-family: 'Inter', sans-serif;
+  color: #2c2c2c;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #7d8791;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+  border-bottom: 1px solid #1f2f46;
+}
+
+/* Botones del formulario */
+.botones-formulario {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+/* Animaciones */
+@keyframes aparecerCarta {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes moverFondo {
+  0% {
+    transform: scale(1.05) translate(0px, 0px);
+  }
+  100% {
+    transform: scale(1.1) translate(-12px, -8px);
+  }
+}
+
+@media (max-width: 768px) {
+  main {
+    padding: 24px 16px;
+  }
+
+  .carta,
+  .formulario {
+    padding: 26px 22px;
+    max-width: 100%;
+  }
+
+  .carta h1 {
+    font-size: 24px;
+  }
+
+  .formulario h2 {
+    font-size: 21px;
+  }
+
+  .carta p {
+    font-size: 14px;
+    line-height: 1.55;
+  }
+}
