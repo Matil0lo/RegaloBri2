@@ -5,69 +5,75 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Una carta para vos</title>
 
-  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="Style.css">
 </head>
 <body>
 
   <main>
 
-    <!-- CARTA -->
     <section class="carta" id="cartaPrincipal">
       <h1>Sorpresa para Bri</h1>
 
       <p>Holaaa, por acá Mati.</p>
 
-<p>
-  Como varios ya la conocen, a Bri le gusta muchísimo la "nostalgia".
-  Más de una vez la vimos guardar cosas simples, como una tapa de botella,
-  porque en ese momento sintió que valía la pena conservar un recuerdo físico
-  de lo que estaba viviendo, para poder volver a ese instante con más claridad el día de mañana.
-</p>
+      <p>
+        Como varios ya la conocen, a Bri le gusta muchísimo la "nostalgia".
+        Más de una vez la vimos guardar cosas simples, como una tapa de botella,
+        porque en ese momento sintió que valía la pena conservar un recuerdo físico
+        de lo que estaba viviendo, para poder volver a ese instante con más claridad el día de mañana.
+      </p>
 
-<p>
-  La idea de esto es armar algo lindo por su cumpleaños.
-  Se me ocurrió hacerle un "libro virtual", donde pueda ver cuánto significa para nosotros.
-  Un lugar al que pueda volver el día que dude de sí misma o se sienta un poco sola,
-  y recordar lo especial que es y todo el amor que la rodea.
-  Que estos mensajes no queden solo en algo del momento,
-  sino en algo a lo que pueda volver siempre, como tanto le gusta.
-</p>
+      <p>
+        La idea de esto es armar algo lindo por su cumpleaños.
+        Se me ocurrió hacerle un "libro virtual", donde pueda ver cuánto significa para nosotros.
+        Un lugar al que pueda volver el día que dude de sí misma o se sienta un poco sola,
+        y recordar lo especial que es y todo el amor que la rodea.
+        Que estos mensajes no queden solo en algo del momento,
+        sino en algo a lo que pueda volver siempre, como tanto le gusta.
+      </p>
 
-<p>
-  Si te llegó este link, es porque me gustaría que puedas escribirle una carta,
-  un mensaje o simplemente unas palabras que reflejen el cariño o la conexión que tenés con ella.
-</p>
+      <p>
+        Si te llegó este link, es porque me gustaría que puedas escribirle una carta,
+        un mensaje o simplemente unas palabras que reflejen el cariño o la conexión que tenés con ella.
+      </p>
 
-<p>
-  Desde ya, gracias por tomarte el tiempo de leer esto y de sumarte de alguna manera.
-  Si te llegó, es porque seguramente sos alguien importante para ella.
-</p>
+      <p>
+        Desde ya, gracias por tomarte el tiempo de leer esto y de sumarte de alguna manera.
+        Si te llegó, es porque seguramente sos alguien importante para ella.
+      </p>
 
-<p>
-  Y si querés sumar algo más personal —como una foto de ustedes,
-  o del momento en el que escribieron la carta,
-  por si el mensaje lo formularon en conjunto a otra persona.—
-  me lo podés mandar y lo agrego después.
-</p>
+      <p>
+        Y si querés sumar algo más personal —como una foto de ustedes,
+        o del momento en el que escribieron la carta,
+        por si el mensaje lo formularon en conjunto con otra persona—
+        me lo podés mandar y lo agrego después.
+      </p>
 
       <button type="button" id="btnAbrirFormulario">Escribir un mensaje</button>
     </section>
 
-    <!-- FORMULARIO -->
     <section class="formulario" id="contenedorFormulario">
-
       <h2>Dejá tu mensaje</h2>
 
-      <form id="formCarta" enctype="multipart/form-data">
-
+      <form
+        id="formCarta"
+        action="https://api.web3forms.com/submit"
+        method="POST"
+      >
         <input type="hidden" name="access_key" value="314661be-7d50-4c9a-a743-e65715cbb8c8">
         <input type="hidden" name="subject" value="Nuevo mensaje para Bri">
         <input type="hidden" name="from_name" value="Cartas para Bri">
 
         <div>
           <label for="name">Tu nombre</label>
-          <input type="text" id="name" name="name" placeholder="Escribe tu nombre" required>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Escribe tu nombre"
+            required
+          >
         </div>
 
         <div>
@@ -81,15 +87,28 @@
           ></textarea>
         </div>
 
-        <p id="estadoEnvio"></p>
+        <div class="campo-archivo">
+          <label for="attachment">Adjuntar imagen (opcional)</label>
+          <input
+            type="file"
+            id="attachment"
+            name="attachment"
+            data-advanced="true"
+            accept="image/*"
+            data-max-file-size="10MB"
+            data-max-files="1"
+            data-content='Arrastra una imagen o <span class="filepond--label-action">búscala</span>'
+          >
+          <p class="ayuda-archivo">
+            Si querés, podés adjuntar una foto de ustedes o del momento en que escribieron la carta.
+          </p>
+        </div>
 
         <div class="botones-formulario">
           <button type="submit">Enviar mensaje</button>
           <button type="button" id="btnVolverCarta">Volver</button>
         </div>
-
       </form>
-
     </section>
 
   </main>
@@ -99,8 +118,6 @@
     var btnVolverCarta = document.getElementById("btnVolverCarta");
     var cartaPrincipal = document.getElementById("cartaPrincipal");
     var contenedorFormulario = document.getElementById("contenedorFormulario");
-    var formCarta = document.getElementById("formCarta");
-    var estadoEnvio = document.getElementById("estadoEnvio");
 
     btnAbrirFormulario.addEventListener("click", function () {
       cartaPrincipal.style.display = "none";
@@ -110,34 +127,9 @@
     btnVolverCarta.addEventListener("click", function () {
       contenedorFormulario.style.display = "none";
       cartaPrincipal.style.display = "block";
-      estadoEnvio.textContent = "";
-    });
-
-    formCarta.addEventListener("submit", function(e) {
-      e.preventDefault();
-
-      estadoEnvio.textContent = "Enviando mensaje...";
-
-      var formData = new FormData(formCarta);
-
-      fetch("https://api.web3forms.com/submit", {
-        method: "POST",
-        body: formData
-      })
-      .then(response => response.json())
-      .then(data => {
-        if (data.success) {
-          estadoEnvio.textContent = "Mensaje enviado correctamente 💌";
-          formCarta.reset();
-        } else {
-          estadoEnvio.textContent = "Error al enviar el mensaje";
-        }
-      })
-      .catch(() => {
-        estadoEnvio.textContent = "Error de conexión";
-      });
     });
   </script>
 
+  <script src="https://web3forms.com/client/script.js" async defer></script>
 </body>
 </html>
